@@ -147,7 +147,7 @@ def save_depth():
         test_dataset = MVSDataset(args.testpath, args.testlist, "test", 7, args.numdepth, args.interval_scale, args.inverse_depth, 
                     adaptive_scaling=True, max_h=args.max_h, max_w=args.max_w, sample_scale=1, base_image_size=8, pyramid=args.pyramid, img_ext = arg.img_ext)
                     #args.pyramid)
-    TestImgLoader = DataLoader(test_dataset, args.batch_size, shuffle=False, num_workers=4, drop_last=False)
+    TestImgLoader = DataLoader(test_dataset, args.batch_size, shuffle=False, num_workers=0, drop_last=False)
 
     # model
     if args.model == 'mvsnet':
