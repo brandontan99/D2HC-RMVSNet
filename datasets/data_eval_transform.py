@@ -10,7 +10,7 @@ from datasets.preprocess import *
 
 class MVSDataset(Dataset):
     def __init__(self, datapath, listfile, mode, nviews, ndepths=192, interval_scale=1.06, inverse_depth=True,
-                adaptive_scaling=True, max_h=1200,max_w=1600,sample_scale=1,base_image_size=8,**kwargs):
+                adaptive_scaling=True, max_h=1200,max_w=1600,sample_scale=1,base_image_size=8, img_ext = "png",**kwargs):
         super(MVSDataset, self).__init__()
         
         self.datapath = datapath
@@ -26,6 +26,8 @@ class MVSDataset(Dataset):
         self.max_w=max_w
         self.sample_scale=sample_scale
         self.base_image_size=base_image_size
+
+        self.img_ext = img_ext
         
         assert self.mode == "test"
         self.metas = self.build_list()
@@ -103,7 +105,7 @@ class MVSDataset(Dataset):
         extrinsics_list=[]
 
         for i, vid in enumerate(view_ids):
-            img_filename = os.path.join(self.datapath, '{}/images/{:0>8}.jpg'.format(scan, vid))
+            img_filename = os.path.join(self.datapath, '{}/images/{:0>8}.{self.img_ext}'.format(scan, vid))
             proj_mat_filename = os.path.join(self.datapath, '{}/cams/{:0>8}_cam.txt'.format(scan, vid))
 
             imgs.append(self.read_img(img_filename))
