@@ -64,7 +64,7 @@ parser.add_argument('--ngpu', type=int, default=1, help='gpu size')
 
 parser.add_argument('--dataset', default='data_eval_transform', help='select dataset')
 parser.add_argument('--testpath', help='testing data path')
-parser.add_argument('--testlist', help='testing scan list')
+# parser.add_argument('--testlist', help='testing scan list')
 
 parser.add_argument('--batch_size', type=int, default=1, help='testing batch size')
 parser.add_argument('--numdepth', type=int, default=256, help='the number of depth values')
@@ -407,8 +407,8 @@ if __name__ == '__main__':
             scans = [line.rstrip() for line in scans]
 
         for scan in scans:
-            scan_id = int(scan[4:])
+            # scan_id = int(scan[4:])
             scan_folder = os.path.join(args.testpath, scan)
             out_folder = os.path.join(save_dir, scan)
             # step2. filter saved depth maps with photometric confidence maps and geometric constraints
-            filter_depth(scan_folder, out_folder, os.path.join(save_dir, 'mvsnet{:0>3}_l3.ply'.format(scan_id)))
+            filter_depth(scan_folder, out_folder, os.path.join(save_dir, 'd2hc_rmvsnet_l3.ply'))
