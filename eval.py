@@ -64,7 +64,7 @@ parser.add_argument('--ngpu', type=int, default=1, help='gpu size')
 
 parser.add_argument('--dataset', default='data_eval_transform', help='select dataset')
 parser.add_argument('--testpath', help='testing data path')
-# parser.add_argument('--testlist', help='testing scan list')
+parser.add_argument('--testlist', help='testing scan list')
 
 parser.add_argument('--batch_size', type=int, default=1, help='testing batch size')
 parser.add_argument('--numdepth', type=int, default=256, help='the number of depth values')
