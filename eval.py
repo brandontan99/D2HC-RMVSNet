@@ -285,7 +285,7 @@ def check_geometric_consistency(depth_ref, intrinsics_ref, extrinsics_ref, depth
     return mask, depth_reprojected, x2d_src, y2d_src
 
 
-def filter_depth(scan_folder, out_folder, plyfilename):
+def filter_depth(scan_folder, out_folder, plyfilename, img_ext):
     # the pair file
     pair_file = os.path.join(scan_folder, "pair.txt")
     # for the final point cloud
@@ -303,7 +303,7 @@ def filter_depth(scan_folder, out_folder, plyfilename):
         ref_intrinsics, ref_extrinsics = read_camera_parameters(
             os.path.join(scan_folder, 'cams/{:0>8}_cam.txt'.format(ref_view)))
         # load the reference image
-        ref_img = read_img(os.path.join(scan_folder, 'images/{:0>8}.{}'.format(ref_view, arg.img_ext)))
+        ref_img = read_img(os.path.join(scan_folder, 'images/{:0>8}.{}'.format(ref_view, img_ext)))
         # load the estimated depth of the reference view
         ref_depth_est = read_pfm(os.path.join(out_folder, 'depth_est/{:0>8}.pfm'.format(ref_view)))[0]
         # load the photometric mask of the reference view
@@ -411,4 +411,4 @@ if __name__ == '__main__':
             scan_folder = os.path.join(args.testpath, scan)
             out_folder = os.path.join(save_dir, scan)
             # step2. filter saved depth maps with photometric confidence maps and geometric constraints
-            filter_depth(scan_folder, out_folder, os.path.join(save_dir, 'd2hc_rmvsnet_l3.ply'))
+            filter_depth(scan_folder, out_folder, os.path.join(save_dir, 'd2hc_rmvsnet_l3.ply'), arg.img_ext)
