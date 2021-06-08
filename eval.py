@@ -411,4 +411,4 @@ if __name__ == '__main__':
             scan_folder = os.path.join(args.testpath, scan)
             out_folder = os.path.join(save_dir, scan)
             # step2. filter saved depth maps with photometric confidence maps and geometric constraints
-            filter_depth(scan_folder, out_folder, os.path.join(save_dir, 'd2hc_rmvsnet_l3.ply'), arg.img_ext)
+            filter_depth(scan_folder, out_folder, os.path.join(save_dir, 'd2hc_rmvsnet_l3.ply'), args.img_ext)
