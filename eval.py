@@ -303,7 +303,7 @@ def filter_depth(scan_folder, out_folder, plyfilename):
         ref_intrinsics, ref_extrinsics = read_camera_parameters(
             os.path.join(scan_folder, 'cams/{:0>8}_cam.txt'.format(ref_view)))
         # load the reference image
-        ref_img = read_img(os.path.join(scan_folder, 'images/{:0>8}.{arg.img_ext}'.format(ref_view)))
+        ref_img = read_img(os.path.join(scan_folder, 'images/{:0>8}.{}'.format(ref_view, arg.img_ext)))
         # load the estimated depth of the reference view
         ref_depth_est = read_pfm(os.path.join(out_folder, 'depth_est/{:0>8}.pfm'.format(ref_view)))[0]
         # load the photometric mask of the reference view
